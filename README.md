@@ -21,4 +21,5 @@ npm run lint
 ```
 
 COLLABORATORS:
-    - Bahadır Tuna Aydın
+
+- Bahadır Tuna Aydın
