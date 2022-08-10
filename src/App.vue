@@ -1,17 +1,31 @@
 <template>
-  <HomePage>
-    <ToDos />
-  </HomePage>
+  <HomeDesktop v-if="!isMobile">
+    <TodosDesktop />
+  </HomeDesktop>
+
+  <HomeMobile v-if="isMobile">
+    <TodosMobile />
+  </HomeMobile>
 </template>
 
 <script>
-import HomePage from "@/components/HomePage.vue";
-import ToDos from "@/components/ToDos.vue";
+import HomeDesktop from "@/components/desktop/HomeDesktop.vue";
+import TodosDesktop from "@/components/desktop/TodosDesktop.vue";
+import HomeMobile from "@/components/mobile/HomeMobile.vue";
+import TodosMobile from "@/components/mobile/TodosMobile.vue";
+
 export default {
   name: "App",
+  data() {
+    return {
+      isMobile: true,
+    };
+  },
   components: {
-    HomePage,
-    ToDos,
+    HomeDesktop,
+    TodosDesktop,
+    HomeMobile,
+    TodosMobile,
   },
 };
 </script>
