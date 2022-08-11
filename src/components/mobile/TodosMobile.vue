@@ -1,9 +1,15 @@
 <template>
   <div v-for="todo in todos" :key="todo.id" class="todo">
-    <div class="todo-input">
-      {{ todo.message }}
+    <div
+      @click="toggleState(todo)"
+      class="todo-data"
+      :class="{ done: todo.isDone }"
+    >
+      <div class="todo-input">
+        {{ todo.message }}
+      </div>
+      <small class="todoDate">{{ todo.date }}</small>
     </div>
-    <small class="todoDate">{{ todo.date }}</small>
 
     <div class="buttons">
       <ul>
@@ -26,13 +32,19 @@
 export default {
   data() {
     return {
-      todos: [
-        { message: "todo message", date: "11/08/2022", id: 1 },
-        { message: "todo message2", date: "12/08/2022", id: 2 },
-      ],
+      todos: this.$store.state.todos,
     };
+  },
+  methods: {
+    toggleState(todo) {
+      todo.isDone = !todo.isDone;
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+.done {
+  text-decoration: line-through;
+}
+</style>

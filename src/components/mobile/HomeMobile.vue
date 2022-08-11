@@ -13,18 +13,36 @@
   </div>
 
   <div class="add-todo">
-    <form>
+    <form @submit.prevent="addTodo">
       <input
         type="text"
         placeholder="Yeni hatırlatma ekle"
         name="todo"
+        ref="todoMessage"
         required
       />
+      <input type="date" name="todo-date" ref="todoDate" required />
       <button>Ekle</button>
     </form>
   </div>
 </template>
 
-<script></script>
+<script>
+// import axios from 'axios';
+export default {
+  methods: {
+    addTodo() {
+      this.$store.state.todos.push({
+        message: this.$refs.todoMessage.value,
+        date: this.$refs.todoDate.value,
+        id: Date.now(),
+        isDone: false,
+      });
+      // this.postTodo();
+    },
+    // postTodo() {},
+  },
+};
+</script>
 
 <style></style>
