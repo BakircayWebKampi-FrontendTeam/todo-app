@@ -28,6 +28,7 @@
 </template>
 
 <script>
+// import axios from 'axios';
 export default {
   methods: {
     addTodo() {
@@ -35,8 +36,11 @@ export default {
         message: this.$refs.todoMessage.value,
         date: this.$refs.todoDate.value,
         id: Date.now(),
+        isDone: false,
       });
+      // this.postTodo();
     },
+    // postTodo() {},
   },
 };
 </script>
