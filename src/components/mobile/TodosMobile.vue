@@ -23,6 +23,11 @@
             <i class="fa-solid fa-trash-can"></i>
           </button>
         </li>
+        <li>
+          <button @click="changeProgress(todo)" type="button">
+            <i class="fa-solid fa-spinner"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -38,6 +43,19 @@ export default {
   methods: {
     toggleState(todo) {
       todo.isDone = !todo.isDone;
+      if (todo.isDone == false) {
+        todo.progress = 0;
+      } else if (todo.isDone == true) {
+        todo.progress = 2;
+      }
+    },
+    changeProgress(todo) {
+      todo.isDone = false;
+      if (todo.progress != 1) {
+        todo.progress = 1;
+      } else {
+        todo.progress = 0;
+      }
     },
   },
 };
@@ -47,4 +65,11 @@ export default {
 .done {
   text-decoration: line-through;
 }
+
+/* 
+todo renkleri:
+başlanmamış - kırmızı
+süreçte - sarı
+tamamlanmış - yeşil
+*/
 </style>
