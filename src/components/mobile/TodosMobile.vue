@@ -26,14 +26,8 @@
 export default {
   data() {
     return {
-      todos: [
-        { message: "todo message", date: "11/08/2022", id: 1 },
-        { message: "todo message2", date: "12/08/2022", id: 2 },
-      ],
+      todos: this.$store.state.todos,
     };
-  },
-  methods: {
-    getPost() {},
   },
 };
 </script>
