@@ -3,11 +3,10 @@ import { createStore } from "vuex";
 import App from "./App.vue";
 
 const store = createStore({
-  state() {
-    return {
-      todos: [],
-    };
+  state: {
+    todos: [],
   },
+  getters: {},
 });
 
 createApp(App).use(store).mount("#app");

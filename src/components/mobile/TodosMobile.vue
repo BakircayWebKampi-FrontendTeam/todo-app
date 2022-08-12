@@ -1,5 +1,14 @@
 <template>
-  <div v-for="todo in todos" :key="todo.id" class="todo">
+  <div
+    v-for="todo in todos"
+    :key="todo.id"
+    class="todo"
+    :class="[
+      todo.progress == 0 ? 'baslanmamis' : '',
+      todo.progress == 1 ? 'surecte' : '',
+      todo.progress == 2 ? 'tamamlanmis' : '',
+    ]"
+  >
     <div
       @click="toggleState(todo)"
       class="todo-data"
@@ -23,6 +32,11 @@
             <i class="fa-solid fa-trash-can"></i>
           </button>
         </li>
+        <li>
+          <button @click="changeProgress(todo)" type="button">
+            <i class="fa-solid fa-spinner"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -38,6 +52,19 @@ export default {
   methods: {
     toggleState(todo) {
       todo.isDone = !todo.isDone;
+      if (todo.isDone == false) {
+        todo.progress = 0;
+      } else if (todo.isDone == true) {
+        todo.progress = 2;
+      }
+    },
+    changeProgress(todo) {
+      todo.isDone = false;
+      if (todo.progress != 1) {
+        todo.progress = 1;
+      } else {
+        todo.progress = 0;
+      }
     },
   },
 };
@@ -47,4 +74,11 @@ export default {
 .done {
   text-decoration: line-through;
 }
+
+/* 
+todo renkleri:
+başlanmamış - kırmızı
+süreçte - sarı
+tamamlanmış - yeşil
+*/
 </style>
