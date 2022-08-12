@@ -1,5 +1,14 @@
 <template>
-  <div v-for="todo in todos" :key="todo.id" class="todo">
+  <div
+    v-for="todo in todos"
+    :key="todo.id"
+    class="todo"
+    :class="[
+      todo.progress == 0 ? 'baslanmamis' : '',
+      todo.progress == 1 ? 'surecte' : '',
+      todo.progress == 2 ? 'tamamlanmis' : '',
+    ]"
+  >
     <div
       @click="toggleState(todo)"
       class="todo-data"
