@@ -57,6 +57,7 @@ export default {
       this.$refs.todoMessage.value = this.$refs.todoDate.value = null;
       this.$refs.todoMessage.focus();
     },
+    // Progress'lere göre filtreleme yapmayı sağlayan fonksiyon
     filterProgress(progressVal) {
       const todos = this.$store.state.todos;
       const todosDataInput = document.querySelectorAll(".todo-input");
