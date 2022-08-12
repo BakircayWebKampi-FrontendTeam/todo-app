@@ -3,9 +3,14 @@
   <div class="progress">
     <ul>
       <li>
+        <button @click="filterProgress(null)" type="button">Tüm</button>
+      </li>
+      <li>
         <button @click="filterProgress(0)" type="button">Başlanmamış</button>
       </li>
-      <li><button @click="filterProgress(1)" type="button">Süreçte</button></li>
+      <li>
+        <button @click="filterProgress(1)" type="button">Süreçte</button>
+      </li>
       <li>
         <button @click="filterProgress(2)" type="button">Tamamlanmış</button>
       </li>
@@ -52,17 +57,28 @@ export default {
       this.$refs.todoMessage.value = this.$refs.todoDate.value = null;
       this.$refs.todoMessage.focus();
     },
-    filterProgress(count) {
+    filterProgress(progressVal) {
       const todos = this.$store.state.todos;
+      const todosDataInput = document.querySelectorAll(".todo-input");
+      const todosElement = document.querySelectorAll(".todo");
 
-      for (let i = 0; i < todos.length; i++) {
-        if (todos[i].progress == count) {
-          // Console ekranında filtreleme kusursuz çalışıyor, ekrana gösterme çalışmıyor
-          console.log(todos[i].message);
+      if (progressVal != null || progressVal != undefined) {
+        for (let i = 0; i < todos.length; i++) {
+          if (
+            todos[i].progress == progressVal &&
+            todosDataInput[i].textContent == todos[i].message
+          ) {
+            todosElement[i].style.display = "block";
+          } else todosElement[i].style.display = "none";
+        }
+      } else if (progressVal == null) {
+        for (let i = 0; i < todos.length; i++) {
+          todosElement[i].style.display = "block";
         }
       }
     },
   },
+
   computed: {},
 };
 </script>
