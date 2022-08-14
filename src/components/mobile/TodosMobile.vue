@@ -1,5 +1,5 @@
 <template>
-  <div v-for="todo in todos" :key="todo.id" class="todo">
+  <div v-for="(todo, index) in todos" :key="todo.id" class="todo">
     <div
       @click="toggleState(todo)"
       class="todo-data"
@@ -19,7 +19,7 @@
           </button>
         </li>
         <li>
-          <button type="button">
+          <button @click="remove(index)" type="button">
             <i class="fa-solid fa-trash-can"></i>
           </button>
         </li>
@@ -38,6 +38,9 @@ export default {
   methods: {
     toggleState(todo) {
       todo.isDone = !todo.isDone;
+    },
+    remove(id) {
+      this.todos.splice(id, 1);
     },
   },
 };
